@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Stage B - Build') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
                 echo 'Build Succeeded'
             }
         }
