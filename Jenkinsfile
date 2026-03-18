@@ -37,7 +37,7 @@ pipeline {
     post {
         always {
             // This publishes the report so the icon appears on the sidebar
-            dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+           // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
         }
     }
 }
