@@ -38,3 +38,10 @@ pipeline {
         // --- NEW STAGE C END ---
     }
 }
+post {
+        always {
+            // This line creates the sidebar icon and the trend chart
+            dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        }
+    }
+}
