@@ -28,11 +28,11 @@ pipeline {
             }
         }
     }
-
-    post {
+post {
         always {
             echo 'Pipeline execution finished. Checking post-build steps...'
+            // Merged publisher into the 'always' block
             dependencyCheckPublisher pattern: 'target/dependency-check-report.xml', allowMissingDescriptor: true
         }
     }
-}
+} // This is the final brace for the whole pipeline
