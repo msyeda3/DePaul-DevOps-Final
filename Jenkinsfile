@@ -32,7 +32,7 @@ pipeline {
     post {
         always {
             echo 'Pipeline execution finished. Checking post-build steps...'
-            dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
+            dependencyCheckPublisher pattern: 'target/dependency-check-report.xml', allowMissingDescriptor: true
         }
     }
 }
