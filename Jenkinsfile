@@ -17,21 +17,24 @@ pipeline {
                 echo 'Build Succeeded'
             }
         }
+        // --- NEW STAGE C START ---
         stage('Stage C - Parallel Scanning') {
             parallel {
                 stage('OWASP Dependency Check') {
                     steps {
-                        // This identifies vulnerable libraries
-                        bat "mvn org.owasp:dependency-check-maven:check -DfailBuildOnCVSS=9"
+                        // This uses the NVD API key you added to Jenkins Credentials
+                        withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')]) {
+                            bat "mvn org.owasp:dependency-check-maven:check -DnvdApiKey=${NVD_API_KEY} -DfailBuildOnCVSS=9"
+                        }
                     }
                 }
-                stage('Dependency Audit') {
+                stage('Maven Dependency Audit') {
                     steps {
-                        // This checks for outdated versions
                         bat 'mvn versions:display-dependency-updates'
                     }
                 }
             }
         }
+        // --- NEW STAGE C END ---
     }
 }
