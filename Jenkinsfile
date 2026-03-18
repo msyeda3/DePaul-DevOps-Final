@@ -33,18 +33,16 @@ pipeline {
             }
         }
     }
+} // This closes the 'stages' block
+    } 
 
     post {
         always {
             // This 'echo' is required so the block isn't empty (Fixes Build #13/#15)
             echo 'Pipeline execution finished. Checking post-build steps...'
-        }
-    }
-}
-post {
-        always {
+            
+            // This publishes your security report to the Jenkins UI
             dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
         }
     }
-}
-
+} // This is the final brace that closes the 'pipeline' block
