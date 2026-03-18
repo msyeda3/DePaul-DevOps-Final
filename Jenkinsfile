@@ -37,6 +37,7 @@ pipeline {
     post {
         always {
             // This publishes the report so the icon appears on the sidebar
+            echo 'Pipeline execution finished.'
            // dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
         }
     }
