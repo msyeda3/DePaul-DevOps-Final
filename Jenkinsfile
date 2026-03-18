@@ -17,7 +17,7 @@ pipeline {
                 stage('OWASP Dependency Check') {
                     steps {
                         // Using skip=true for lab purposes to avoid NVD timeouts
-                        bat 'mvn org.owasp:dependency-check-maven:check -DdependencyCheck.skip=true'
+                        bat 'mvn org.owasp:dependency-check-maven:check'
                     }
                 }
                 stage('Maven Dependency Audit') {
