@@ -30,9 +30,12 @@ pipeline {
     }
 post {
         always {
-            echo 'Pipeline execution finished. Checking post-build steps...'
-            // Merged publisher into the 'always' block
-            dependencyCheckPublisher pattern: 'target/dependency-check-report.xml', allowMissingDescriptor: true
+            echo 'Pipeline execution finished. Archiving available reports...'
+            // This replaces the missing 'dependencyCheckPublisher'
+            archiveArtifacts artifacts: 'target/dependency-check-report.xml', allowEmptyArchive: true
+            
+            // Optional: You can also archive your JaCoCo coverage reports here
+            archiveArtifacts artifacts: 'target/site/jacoco/**', allowEmptyArchive: true
         }
     }
-} // This is the final brace for the whole pipeline
+} // Final closing brace for the whole pipeline
