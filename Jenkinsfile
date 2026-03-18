@@ -32,9 +32,7 @@ pipeline {
                 }
             }
         }
-    }
-} // This closes the 'stages' block
-    } 
+    } // Closes stages
 
     post {
         always {
@@ -45,4 +43,4 @@ pipeline {
             dependencyCheckPublisher pattern: 'target/dependency-check-report.xml'
         }
     }
-} // This is the final brace that closes the 'pipeline' block
+} // Closes pipeline
